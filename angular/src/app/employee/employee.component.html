@@ -1,0 +1,105 @@
+<div class="container">
+
+  <div align="right">
+    <button mat-fab extended routerLink="/list">
+      Go to Employee List
+    </button>
+  </div>
+  <div class="card p-5 mt-3">
+    <form #f="ngForm" (ngSubmit)="save(f)">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Employee Name</mat-label>
+        <input matInput placeholder="Employee Name" [(ngModel)]="employee.name" name="name" required/>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Contact Number</mat-label>
+        <input matInput placeholder="Contact Number" [(ngModel)]="employee.number" name="number" required/>
+        <mat-icon matSuffix>call</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Employee Adress</mat-label>
+        <input matInput placeholder="Employee Adress" [(ngModel)]="employee.adress" name="adress" required />
+        <mat-icon matSuffix>apartment</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field style="width:100%">
+        <mat-label>Choose your department</mat-label>
+        <mat-select [(ngModel)]="employee.department" name="department" required>
+          <mat-option value="IT">IT</mat-option>
+          <mat-option value="Network">Network</mat-option>
+          <mat-option value="Finance">Finance</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="employee.gender"  name="gender" required>
+          <Label><strong>Gender:</strong></Label>
+          <mat-radio-button (click)="selectGender('M')" value="M">Male</mat-radio-button>
+          <mat-radio-button (click)="selectGender('F')" value="F">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <mat-form-field class="mt-2" appearance="outline" style="width:100%" >
+        <mat-label>Employee Skills</mat-label>
+        <input matInput placeholder="Employee Skills" [(ngModel)]="employee.skills" name="skills" required disabled/>
+        <mat-icon matSuffix>menu_book</mat-icon>
+      </mat-form-field>
+
+      <div>
+        <label><strong>Skills:</strong></label>
+        <section class="example-section">
+          <mat-checkbox 
+            (change)="onSkillsChanges($event)" 
+            class="example-margin"
+            value="JAVA"
+            [checked]="checkSkills('JAVA')">
+            JAVA
+          </mat-checkbox>
+          <mat-checkbox 
+            (change)="onSkillsChanges($event)" 
+            class="example-margin"  
+            value="Angular"
+            [checked]="checkSkills('Angular')">
+            Angular
+          </mat-checkbox>
+          <mat-checkbox 
+            (change)="onSkillsChanges($event)" 
+            class="example-margin" 
+            value="Spring Boot"
+            [checked]="checkSkills('Spring Boot')">
+            Spring Boot
+          </mat-checkbox>
+          <mat-checkbox 
+            (change)="onSkillsChanges($event)" 
+            class="example-margin" 
+            value="AWS"
+            [checked]="checkSkills('AWS')">
+            AWS
+          </mat-checkbox>
+        </section>
+      </div>
+      
+      <mat-divider></mat-divider>
+      <br />
+      <div class="text-center">
+        <button mat-button style="margin: 10px" type="button" (click)="f.resetForm()">Clear</button>
+        <button mat-flat-button type="submit">Save</button>
+      </div>
+    </form>
+    <div class="modal" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="alert alert-danger" role="alert" >
+              <h6>You must complete all inputs!</h6>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
